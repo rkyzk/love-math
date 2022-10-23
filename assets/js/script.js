@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
-    runGame("addtion");
+    runGame("addition");
 })
 
 /**
@@ -34,17 +34,19 @@ function runGame(gameType) {
   * the returned calculateCorrectAnswer array.
   */
 function checkAnswer() {
-    let userAnswer = parseInt(document.getElementsByTagName("answer-box").value);
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
     let calculatedAnswer = calculateCorrectAnswer();
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect) {
         alert("You got it right!"); 
+        incrementScore();
     } else {
-        alert(`You answered ${userAnswer}.  The correct answer is ${caluctedAnswer}.`);
+        alert(`You answered ${userAnswer}.  The correct answer is ${calculatedAnswer}.`);
+        incrementWrongAnswer();
     }
     runGame(calculatedAnswer[1]);
-    }
+}
 
 
 /**
@@ -58,16 +60,25 @@ function calculateCorrectAnswer() {
   if (operator === "+") {
     return [operand1 + operand2, "addition"];
   } else {
-    alert(`Unimplemented operand: ${operand}`);
-    throw `Unknown operand: ${operand}. Aborting!`;
+    alert(`Unimplemented operator: ${operator}`);
+    throw `Unknown operand: ${operator}. Aborting!`;
+  }
 }
 
+/**
+ * Gets the current score from the DOM and increment it by 1
+ */
 function incrementScore() {
-
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").textContent = ++oldScore;
 }
 
-function incrementWrongScore () {
-
+/**
+ * Gets the tally of wrong answers from the DOM and increment it by 1
+ */
+function incrementWrongAnswer () {
+    let oldWrongScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").textContent = ++oldWrongScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
