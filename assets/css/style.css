@@ -16,7 +16,9 @@ body {
 
 .logo {
     height: 40px;
-    padding-right: 5px;
+    padding-right: 15px;
+    position: relative;
+    top: 5px;
 }
 
 /* --------- Game layout */
@@ -84,6 +86,9 @@ body {
     padding: 25px;
 }
 
+#score, #incorrect {
+    margin-left: 10px;
+}    
 /* --------- Buttons */
 
 .btn {
