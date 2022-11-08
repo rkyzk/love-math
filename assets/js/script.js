@@ -47,25 +47,23 @@ function runGame(gameType) {
  * Checks the answer against the first element in 
  * the returned calculateCorrectAnswer array.
  */
-function checkAnswer() {
-    
+function checkAnswer() {   
   let userAnswer = parseInt(document.getElementById("answer-box").value);
-  if (userAnswer === NaN) {
+  if (isNaN(userAnswer)) {
     alert(`Please eneter an answer`);
-  } 
-
-  let calculatedAnswer = calculateCorrectAnswer();
-  let isCorrect = userAnswer === calculatedAnswer[0];
-  if (isCorrect) {
-    alert("You got it right!"); 
-    incrementScore();
   } else {
-    alert(`You answered ${userAnswer}.  The correct answer is ${calculatedAnswer}.`);
-    incrementWrongAnswer();
-  }
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+    if (isCorrect) {
+      alert("You got it right!"); 
+      incrementScore();
+    } else {
+      alert(`You answered ${userAnswer}.  The correct answer is ${calculatedAnswer}.`);
+      incrementWrongAnswer();
+    }
   runGame(calculatedAnswer[1]);
+  }
 }
-
 /**
  * gets operands and operator directly from the dom,
  * and returns the correct answer.
